@@ -9,7 +9,6 @@
       state: present
     when: ansible_os_family =="Debian"
   - name: start the webserver
-    apt:
     service:
       name: apache2
       state: started
