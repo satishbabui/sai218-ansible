@@ -1,0 +1,14 @@
+---
+- host: webserver
+  become: yes
+  tasks:
+  - name: install java6 on ubuntu
+    apt:
+      name: "{{installjava6onubuntu}}"
+      state: present
+    when: ansible_os_family =="Debian" 
+  - name: install java7 on redhat
+    yum:
+      name: "{{installjava7onredhat}}"
+      state: present
+    when: ansible_os_family =="RedHat"

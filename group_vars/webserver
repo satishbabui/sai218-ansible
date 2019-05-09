@@ -1,3 +1,6 @@
 key : values
 installapache2onubuntu : apache2
 installhttpdonredhat : httpd
+
+installjava6onubuntu : openjdk-6-jre
+installjava7onredhat : java-1.7.0-openjdk
