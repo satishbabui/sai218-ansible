@@ -1,0 +1,28 @@
+---
+- hosts: webserver
+  become: yes
+  gather_facts: yes
+  tasks:
+  - name: install apache2 on ubuntu 
+    apt:
+      name: "{{install apache2 on ubuntu}}"
+      state: present
+    when: ansible_os_family =="Debian"
+  - name: start the apache2
+    service:
+      name: "{{install apache2 on ubuntu}}"
+      state: started
+    when: ansible_os_family =="Debian"
+
+
+  - name: install apache2 on redhat 
+    yum:
+      name: "{{install httpd on redhat}}"
+      state: present
+    when: ansible_os_family =="RedHat"
+  - name: start the httpd
+    service:
+      name: "{{install httpd on redhat}}"
+      state: started
+    when: ansible_os_family =="RedHat"
+  
