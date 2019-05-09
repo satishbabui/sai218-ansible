@@ -3,11 +3,11 @@
   become: yes
   gather_facts: yes
   tasks:
-  - name: install webserver on ubuntu 
+  - name: install apache2 on ubuntu 
     apt:
       name: apache2
       state: present
-  - name: start the webserver
+  - name: start the apache2
     service:
       name: apache2
       state: started
