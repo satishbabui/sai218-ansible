@@ -8,4 +8,16 @@
     - name: display result name  
       debug: 
         msg: "{{result}}"
+    
+    - name: install git using condition
+      yum:
+        name: git
+        state: present
+      when: result.stderr ==""
+    
+    - name: install tree using condition
+      yum:
+        name: tree
+        state: present
+      when: result.stderr !=""
         
