@@ -2,7 +2,7 @@
 - hosts: all
   become: yes
   tasks:
-  - inlcude_tasks: myfile.yml
+  - include_tasks: myfile.yml
   
   - name: install apache2 on redhat
     yum:
