@@ -1,0 +1,5 @@
+---
+  - name: creating a file in redhat
+    file:
+      path: /home/kanth/sai.txt
+      state: touch

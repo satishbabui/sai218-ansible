@@ -1,0 +1,29 @@
+---
+- hosts: all
+  become: yes
+  tasks:
+  - inlcude_tasks: myfile.yml
+  
+  - name: install apache2 on redhat
+    yum:
+      name: httpd
+      state: present
+    notify: startwebserver
+  
+  - name: copy index file into the webserver
+    template: 
+        src: index.j2
+        dest: /var/www/html/index.html
+    notify: startwebserver
+  
+  handlers:   
+  - name: startwebserver
+    service: 
+      name: httpd
+      state: started
+
+  - name: stopwebserver
+    service: 
+      name: httpd
+      state: stoped
+  
