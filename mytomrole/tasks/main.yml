@@ -1,2 +1,34 @@
 ---
 # tasks file for mytomrole
+- name: install tomcat on redhat 
+  yum:
+    name: tomcat
+    state: present
+
+- name: copy config file into tomcat
+  template:
+    src: templates/config.j2
+    dest: /usr/share/tomcat/conf/tomcat.conf
+
+- name: install admin pages 
+  yum:
+    name: "{{item}}"
+    state: present
+  with_items:
+    - tomcat-webapps
+    - tomcat-admin-webapps
+
+- name: copy tomuser file into tomcat  
+  template:
+    src: templates/tomuser.j2
+    dest: /usr/share/tomcat/conf/tomcat-users.xml 
+  notify: starttomcat        
+
+- name: get the url of jenkins into tomcat
+  get_url:
+     url: http://mirrors.jenkins.io/war-stable/latest/jenkins.war
+     dest: /usr/share/tomcat/webapps/
+     force_basic_auth: yes
+  notify: restarttomcat       
+
+ 
